@@ -1,0 +1,16 @@
+```{r}
+state.df<-as.data.frame(state.x77)
+View(state.df)
+names(state.df)[4]<-"Life.Exp"
+names(state.df)[6]<-"HS.Grad"
+```
+```{r}
+fit1<-lm(Life.Exp~.,data=state.df)
+summary(fit1)
+```
+```{r}
+fit2<-lm(Life.Exp~HS.Grad+Murder,state.df)
+summary(fit2)
+
+```
+
