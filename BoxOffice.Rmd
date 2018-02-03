@@ -1,0 +1,21 @@
+```{r}
+setwd("C:/Users/vaibhav/Desktop/DataSets")
+abc.df<-read.csv("SequelsData2018_2.csv")
+View(abc.df)
+```
+```{r}
+table(abc.df$Sequel)
+```
+```{r}
+boxplot(abc.df$BoxOffice~abc.df$Sequel,xlab="Sequels",ylab="Box office collection in millions INR")
+```
+```{r}
+attach(abc.df)
+mytable<-aggregate(BoxOffice,list(Sequel),mean)
+mytable
+```
+```{r}
+fit<-lm(BoxOffice~Sequel+Actor+Actress+Producer+Director+Rating,abc.df)
+summary(fit)
+```
+
