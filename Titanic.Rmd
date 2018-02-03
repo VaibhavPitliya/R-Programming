@@ -1,0 +1,55 @@
+Reading the Titanic data set into R.  Create a dataframe called "Titanic". 
+```{r}
+setwd("C:/Users/vaibhav/Desktop")
+Titanic.df<-read.csv("TitanicData.csv")
+View(Titanic.df)
+```
+Using R to count the total number of passengers on board the Titanic.
+```{r}
+dim(Titanic.df)
+```
+Using R to count the number of passengers who survived the sinking of the Titanic.
+```{r}
+my.table<-with(Titanic.df,table(Survived))
+my.table
+```
+Using R to measure the percentage of passengers who survived the sinking of the Titanic.
+```{r}
+prop.table(my.table)*100
+```
+Using R to count the number of first-class passengers who survived the sinking of the Titanic.
+```{r}
+my.table<-xtabs(~ Survived+Pclass,data=Titanic.df)
+my.table
+        
+```
+Using R to measure the percentage of first-class passengers who survived the sinking of the Titanic. 
+```{r}
+prop.table(my.table,2)*100
+```
+Using R to count the number of females from First-Class who survived the sinking of the Titanic
+```{r}
+my.table<-xtabs(~Pclass+Survived+Sex,data=Titanic.df)
+ftable(my.table)
+```
+Using R to measure the percentage of survivors who were female
+```{r}
+my.table<-xtabs(~Survived+Sex,data=Titanic.df)
+my.table
+prop.table(my.table,1)*100
+```
+Using R to measure the percentage of females on board the Titanic who survived
+```{r}
+my.table<-xtabs(~Survived+Sex,data=Titanic.df)
+my.table
+prop.table(my.table,2)*100
+```
+Runnig a Pearson's Chi-squared test to test the following hypothesis:
+
+Hypothesis:  The proportion of females onboard who survived the sinking of the Titanic was higher than the proportion of males onboard who survived the sinking of the Titanic.
+
+```{r}
+chisq.test(my.table)
+
+```
+
